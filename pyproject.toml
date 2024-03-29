@@ -1,0 +1,37 @@
+[project]
+name = "noctisdice"
+version = "0.1.0"
+description = "夜骰核心组件"
+authors = [
+    {name = "fu050409",email = "fu050409@163.com"},
+]
+license = {text = "AGPLv3"}
+dependencies = [
+    "infini>2.1.0",
+    "nonebot-adapter-qq>=1.4.2",
+    "nonebot2[httpx]>=2.2.1",
+    "nonebot2[websockets]>=2.2.1",
+    "nonebot2[aiohttp]>=2.2.1",
+    "nonebot-adapter-console>=0.5.0",
+    "psutil>=5.9.8",
+]
+requires-python = ">=3.8"
+readme = "README.md"
+
+[tool.pdm]
+distribution = true
+
+[tool.nonebot]
+adapters = [
+    { name = "QQ", module_name = "nonebot.adapters.qq" },
+    # { name = "Console", module_name = "nonebot.adapters.console" },
+]
+plugins = []
+plugin_dirs = ["src/"]
+builtin_plugins = []
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pytest",
+    "ipdm>=0.2.0-beta",
+]

@@ -1,0 +1,11 @@
+[project]
+name = "noctisdice"
+version = "4.0.0-rc.4"
+description = "DicerGirl for Infini"
+authors = []
+license = "Apache-2.0"
+
+[requirements]
+coc = "latest"
+
+[dependencies]
