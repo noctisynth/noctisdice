@@ -32,7 +32,7 @@ curl https://cdn.npmmirror.com/binaries/python/3.12.2/python-3.12.2-amd64.exe -o
 
 echo [*] °²×° Python...
 echo [33m[!] ×¢Òâ: ÇëÎñ±Ø¹´Ñ¡ Add Python 3.12 to PATH[0m
-start /wait python_installer.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+start /wait python_installer.exe
 
 del /q python_installer.exe
 goto :check_python

@@ -32,7 +32,7 @@ curl https://cdn.npmmirror.com/binaries/python/3.12.2/python-3.12.2-amd64.exe -o
 
 echo [*] 安装 Python...
 echo [!] 注意: 请务必勾选 Add Python 3.12 to PATH
-start /wait python_installer.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+start /wait python_installer.exe
 
 del /q python_installer.exe
 goto :check_python
