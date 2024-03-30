@@ -13,7 +13,7 @@ python -m pip -V > nul 2>&1
 if %errorlevel% equ 0 (
     echo [+] pip 已正确安装。
 ) else (
-    echo 未找到 pip 环境，重新下载安装 Python。
+    echo [!] 未找到 pip 环境，重新下载安装 Python。
     goto :install_python
 )
 :check_pipx

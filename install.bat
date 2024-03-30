@@ -13,7 +13,7 @@ python -m pip -V > nul 2>&1
 if %errorlevel% equ 0 (
     echo [32m[+] pip ряуЩх╥╟╡в╟║ё[0m
 ) else (
-    echo н╢ур╣╫ pip ╩╥╬Ёё╛жьпбобть╟╡в╟ Python║ё
+    echo [33m[!] н╢ур╣╫ pip ╩╥╬Ёё╛жьпбобть╟╡в╟ Python║ё[0m
     goto :install_python
 )
 :check_pipx
