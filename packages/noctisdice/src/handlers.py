@@ -170,7 +170,7 @@ def pc_handler(input: Input):
             for idx, card in enumerate(cache_cards.getall(user_id) or []):
                 character = manager.build_card(status.get(session_id, "mode") or "coc")
                 character.loads(card)
-                card_datas.append({"meta": f"卡名: {character.get("name")}", "sequence": idx})
+                card_datas.append({"meta": f"卡名: {character.get('name')}", "sequence": idx})
             yield input.output(
                 "text", "dg.pc.list.cache", block=True, variables={"cards": card_datas, "selected_id": cards.get_selected_id(user_id)}
             )
@@ -179,7 +179,7 @@ def pc_handler(input: Input):
             for idx, card in enumerate(cards.getall(user_id) or []):
                 character = manager.build_card(status.get(session_id, "mode") or "coc")
                 character.loads(card)
-                card_datas.append({"meta": f"卡名: {character.get("name")}", "sequence": idx})
+                card_datas.append({"meta": f"卡名: {character.get('name')}", "sequence": idx})
             yield input.output(
                 "text", "dg.pc.list", block=True, variables={"cards": card_datas, "selected_id": cards.get_selected_id(user_id)}
             )

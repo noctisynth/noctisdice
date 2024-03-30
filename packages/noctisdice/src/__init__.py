@@ -12,7 +12,7 @@ from ipm.models.ipk import InfiniProject
 
 
 project = InfiniProject(Path(__file__).resolve().parent.parent)
-for requirement in project.requirements:
-    require(requirement.name)
+#for requirement in project.requirements:
+#    require(requirement.name)
 
 __all__ = ["events_register", "handlers_register", "interceptors_register"]
