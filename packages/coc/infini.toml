@@ -9,5 +9,7 @@ license = "AGPLv3"
 readme = "README.md"
 
 [requirements]
+noctisdice = "4.0.0-rc.4"
 
 [dependencies]
+diceutils = "*"

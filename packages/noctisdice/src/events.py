@@ -191,7 +191,10 @@ def card_name(
     nickname: Optional[str],
 ) -> str:
     status = StatusPool.get("dicergirl")
-    cards = CardsPool.get(
-        status.get(group_id, "mode") or status.get(session_id, "mode") or "coc"
-    ) or {}
+    cards = (
+        CardsPool.get(
+            status.get(group_id, "mode") or status.get(session_id, "mode") or "coc"
+        )
+        or {}
+    )
     return (cards.get(user_id) or {}).get("name", nickname) or "用户"

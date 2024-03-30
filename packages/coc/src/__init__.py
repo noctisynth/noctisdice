@@ -7,4 +7,4 @@ from .interceptors import register as interceptors_register
 
 from infini.internal import require
 
-#ndice_register = require("ndice")
+ndice_register = require("ndice")
