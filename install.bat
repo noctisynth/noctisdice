@@ -17,6 +17,7 @@ if %errorlevel% equ 0 (
 )
 :check_pipx
 pipx --version > nul 2>&1
+pipx ensurepath
 if %errorlevel% equ 0 (
     echo [32m[+] pipx ÒÑÕýÈ·°²×°¡£[0m
     goto :setup_env

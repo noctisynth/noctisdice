@@ -17,6 +17,7 @@ if %errorlevel% equ 0 (
 )
 :check_pipx
 pipx --version > nul 2>&1
+pipx ensurepath
 if %errorlevel% equ 0 (
     echo [+] pipx 已正确安装。
     goto :setup_env
