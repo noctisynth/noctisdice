@@ -18,3 +18,9 @@ name = "coc"
 version = "0.1.0-rc.1"
 yggdrasil = "https://yggdrasil.noctisynth.org/"
 url = "/packages/coc/coc-0.1.0-rc.1.ipk"
+
+[[package]]
+name = "ndice"
+version = "0.1.0-rc.1"
+yggdrasil = "https://yggdrasil.noctisynth.org/"
+url = "/packages/ndice/ndice-0.1.0-rc.1.ipk"
