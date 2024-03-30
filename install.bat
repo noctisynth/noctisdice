@@ -109,7 +109,7 @@ if %errorlevel% equ 0 (
 )
 
 :run
-nb run --reload
+run.bat
 
 :end
 pause
