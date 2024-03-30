@@ -40,22 +40,22 @@ goto :check_python
 
 :install_pipx
 echo [*] 安装 pipx 中...
-pip install pipx -i http://mirrors.aliyun.com/pypi/simple/
+pip install pipx -i https://mirrors.aliyun.com/pypi/simple/
 goto :check_pipx
 
 :install_pdm
 echo [*] 安装 PDM 中...
-pipx install pdm -i http://mirrors.aliyun.com/pypi/simple/
+pipx install pdm -i https://mirrors.aliyun.com/pypi/simple/
 goto :check_pdm
 
 :install_ipm
 echo [*] 安装 IPM 中...
-pipx install ipdm==0.2.0-beta -i http://mirrors.aliyun.com/pypi/simple/
+pipx install ipdm==0.2.0-beta -i https://mirrors.aliyun.com/pypi/simple/
 goto :check_ipm
 
 :install_nb_cli
 echo [*] 安装 nb-cli 中...
-pipx install nb-cli -i http://mirrors.aliyun.com/pypi/simple/
+pipx install nb-cli -i https://mirrors.aliyun.com/pypi/simple/
 goto :check_nb_cli
 
 
