@@ -28,7 +28,7 @@ if %errorlevel% equ 0 (
 
 :install_python
 echo [*] ÕýÔÚÏÂÔØ Python °²×°³ÌÐò...
-bitsadmin.exe /transfer DownloadPython /priority normal "https://registry.npmmirror.com/-/binary/python/3.12.2/python-3.12.2-amd64.exe" "%~dp0python_installer.exe"
+curl https://cdn.npmmirror.com/binaries/python/3.12.2/python-3.12.2-amd64.exe -o python_installer.exe
 
 echo [*] °²×° Python...
 echo [33m[!] ×¢Òâ: ÇëÎñ±Ø¹´Ñ¡ Add Python 3.12 to PATH[0m

@@ -28,7 +28,7 @@ if %errorlevel% equ 0 (
 
 :install_python
 echo [*] 正在下载 Python 安装程序...
-bitsadmin.exe /transfer DownloadPython /priority normal "https://registry.npmmirror.com/-/binary/python/3.12.2/python-3.12.2-amd64.exe" "%~dp0python_installer.exe"
+curl https://cdn.npmmirror.com/binaries/python/3.12.2/python-3.12.2-amd64.exe -o python_installer.exe
 
 echo [*] 安装 Python...
 echo [!] 注意: 请务必勾选 Add Python 3.12 to PATH
