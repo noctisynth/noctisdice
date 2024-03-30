@@ -1,6 +1,5 @@
 @echo off
 
-REM 检查 Python 环境
 echo [*] 检查 Python 环境中...
 :check_python
 python --version > nul 2>&1
@@ -26,7 +25,6 @@ if %errorlevel% equ 0 (
 )
 
 
-REM 依赖安装
 :install_python
 echo [*] 正在下载 Python 安装程序...
 bitsadmin.exe /transfer DownloadPython /priority normal "https://registry.npmmirror.com/-/binary/python/3.12.2/python-3.12.2-amd64.exe" "%~dp0python_installer.exe"
@@ -50,7 +48,7 @@ goto :check_pdm
 
 :install_ipm
 echo [*] 安装 IPM 中...
-pipx install ipdm==0.2.0-beta -i https://mirrors.aliyun.com/pypi/simple/
+pipx install ipdm^>=0.2.0-beta -i https://mirrors.aliyun.com/pypi/simple/
 goto :check_ipm
 
 :install_nb_cli
@@ -59,7 +57,6 @@ pipx install nb-cli -i https://mirrors.aliyun.com/pypi/simple/
 goto :check_nb_cli
 
 
-REM 配置环境
 :setup_env
 echo [*] 配置环境中...
 :check_pdm
