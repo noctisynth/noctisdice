@@ -8,12 +8,14 @@ from infini.input import Input
 from infini.injector import Injector
 from diceutils.utils import format_msg
 from diceutils.parser import CommandParser, Commands, Optional, Bool
+from git import Repo
 from ipm import api
 
 from .utils import get_packages, hmr, get_core
 from .workflow import put, workflows
 
 import json
+import shutil
 
 
 class Interceptor:
@@ -58,6 +60,9 @@ async def ipm_handler(event: Event, matcher: Matcher):
                 Optional(("remove", "rm", "unrequire"), str),
                 Bool("clear"),
                 Bool("show"),
+                Optional("adapter", str),
+                Bool("sync"),
+                Bool("install"),
             ]
         ),
         args=args,
@@ -77,7 +82,7 @@ async def ipm_handler(event: Event, matcher: Matcher):
             )
 
         try:
-            api.require(Path.cwd(), commands["add"])  # type: ignore
+            api.require(Path.cwd(), commands["add"], echo=True)  # type: ignore
         except Exception as e:
             return await matcher.send(f"适配器错误: 挂载规则包时出现错误: {e}")
         hmr()
@@ -86,7 +91,7 @@ async def ipm_handler(event: Event, matcher: Matcher):
     if commands["clear"]:
         for package in packages:
             try:
-                api.unrequire(Path.cwd(), package)
+                api.unrequire(Path.cwd(), package, echo=True)
             except Exception as e:
                 return await matcher.send(f"适配器错误: 卸载规则包时出现异常: {e}")
         hmr()
@@ -98,15 +103,44 @@ async def ipm_handler(event: Event, matcher: Matcher):
     if commands["remove"]:
         if commands["remove"] in packages:
             try:
-                api.unrequire(Path.cwd(), commands["remove"])
+                api.unrequire(Path.cwd(), commands["remove"], echo=True)
             except Exception as e:
                 return await matcher.send(f"适配器错误: 卸载规则包时出现异常: {e}")
 
             return await matcher.send(f"规则包[{commands['remove']}]卸载完成")
         return await matcher.send(f"规则包[{commands['remove']}]未挂载")
 
+    if commands["adapter"]:
+        if commands["adapter"] == "update":
+            if not shutil.which("git"):
+                return await matcher.send("未检测到 Git 安装，指令忽略。")
+            else:
+                try:
+                    repo = Repo(str(Path.cwd()))
+                    repo.remote("main").pull()
+                except Exception as e:
+                    return await matcher.send(
+                        f"适配器错误: 拉取适配器更改时出现异常: {e}"
+                    )
+
+            return await matcher.send("适配器更新成功！")
+
+    if commands["sync"]:
+        try:
+            api.sync(Path.cwd())
+        except Exception as e:
+            return await matcher.send(f"适配器错误: 同步规则包时出现异常: {e}")
+        return await matcher.send("规则包同步完成！")
+
+    if commands["install"]:
+        try:
+            api.install(Path.cwd(), echo=True)
+        except Exception as e:
+            return await matcher.send(f"适配器错误: 安装规则包时出现异常: {e}")
+        return await matcher.send("规则包安装完成！")
+
     await matcher.send(
-        "Infini Package Manager 版本 1.0.0-beta.1 [IPM for Infini v2.0.6]\n"
+        "Infini Package Manager 版本 1.0.0-beta.3 [IPM for Infini v2.0.6]\n"
         "欢迎使用 IPM, 使用`.help ipm`查看 IPM 使用帮助."
     )
 

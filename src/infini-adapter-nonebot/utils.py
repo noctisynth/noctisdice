@@ -2,7 +2,6 @@ from typing import Optional
 from nonebot.adapters import Bot
 from nonebot.log import logger
 from pathlib import Path
-from diceutils.status import StatusPool
 from ipm.models.ipk import InfiniProject
 from infini.core import Core
 from infini.loader import Loader
@@ -12,7 +11,6 @@ import importlib
 import sys
 import asyncio
 
-status = StatusPool.register("dicergirl")
 core: Core
 
 
