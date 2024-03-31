@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:d5e8de343c79185014facbdd16473681d1a777a3e6d3e4d4254f3f44a8746a35"
+content_hash = "sha256:405961058e35b2b479d5edca832bfea9fcf2931b5dea3f5354819e834cdbfa55"
 
 [[package]]
 name = "annotated-types"
@@ -230,7 +230,7 @@ name = "gitdb"
 version = "4.0.11"
 requires_python = ">=3.7"
 summary = "Git Object Database"
-groups = ["dev"]
+groups = ["default", "dev"]
 dependencies = [
     "smmap<6,>=3.0.1",
 ]
@@ -241,16 +241,16 @@ files = [
 
 [[package]]
 name = "gitpython"
-version = "3.1.42"
+version = "3.1.43"
 requires_python = ">=3.7"
 summary = "GitPython is a Python library used to interact with Git repositories"
-groups = ["dev"]
+groups = ["default", "dev"]
 dependencies = [
     "gitdb<5,>=4.0.1",
 ]
 files = [
-    {file = "GitPython-3.1.42-py3-none-any.whl", hash = "sha256:1bf9cd7c9e7255f77778ea54359e54ac22a72a5b51288c457c881057b7bb9ecd"},
-    {file = "GitPython-3.1.42.tar.gz", hash = "sha256:2d99869e0fef71a73cbd242528105af1d6c1b108c60dfabd994bf292f76c3ceb"},
+    {file = "GitPython-3.1.43-py3-none-any.whl", hash = "sha256:eec7ec56b92aad751f9912a73404bc02ba212a23adb2c7098ee668417051a1ff"},
+    {file = "GitPython-3.1.43.tar.gz", hash = "sha256:35f314a9f878467f5453cc1fee295c3e18e52f1b99f10f6cf5b1682e968a9e7c"},
 ]
 
 [[package]]
@@ -1285,7 +1285,7 @@ name = "smmap"
 version = "5.0.1"
 requires_python = ">=3.7"
 summary = "A pure Python implementation of a sliding window memory map manager"
-groups = ["dev"]
+groups = ["default", "dev"]
 files = [
     {file = "smmap-5.0.1-py3-none-any.whl", hash = "sha256:e6d8668fa5f93e706934a62d7b4db19c8d9eb8cf2adbb75ef1b675aa332b69da"},
     {file = "smmap-5.0.1.tar.gz", hash = "sha256:dceeb6c0028fdb6734471eb07c0cd2aae706ccaecab45965ee83f11c8d3b1f62"},

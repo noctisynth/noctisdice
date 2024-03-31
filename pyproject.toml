@@ -16,6 +16,7 @@ dependencies = [
     "psutil>=5.9.8",
     "diceutils>=0.3.6",
     "nonebot-adapter-onebot>=2.4.3",
+    "gitpython>=3.1.43",
 ]
 requires-python = ">=3.8"
 readme = "README.md"
