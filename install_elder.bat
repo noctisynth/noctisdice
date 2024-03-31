@@ -1,5 +1,8 @@
 @echo off
 
+type COPYRIGHT
+echo.
+
 echo [*] 检查 Python 环境中...
 :check_python
 python --version > nul 2>&1
