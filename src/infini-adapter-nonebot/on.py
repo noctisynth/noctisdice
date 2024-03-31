@@ -124,15 +124,14 @@ async def ipm_handler(event: Event, matcher: Matcher):
             if not shutil.which("git"):
                 return await matcher.send("未检测到 Git 安装，指令忽略。")
             else:
-                try:
-                    repo = Repo(str(Path.cwd()))
-                    repo.remote().pull()
-                except Exception as e:
+                parameters = {"matcher": matcher}
+                if workflow := workflows.get("adapter.update"):
+                    put(injector.inject(workflow, parameters=parameters))
+                    return await matcher.send("开始拉取适配器更改...")
+                else:
                     return await matcher.send(
-                        f"适配器错误: 拉取适配器更改时出现异常: {e}"
+                        f"适配器错误: 工作流[adapter.update]不存在！"
                     )
-
-            return await matcher.send("适配器更新成功！")
 
     if commands["sync"]:
         parameters = {"matcher": matcher}

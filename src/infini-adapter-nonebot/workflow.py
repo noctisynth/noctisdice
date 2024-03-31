@@ -1,6 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 from typing import Callable
-from .utils import hmr, file_upload, install, sync
+from .utils import adapter_update, hmr, file_upload, install, sync
 
 pool = ThreadPoolExecutor(20)
 workflows = {
@@ -8,6 +8,7 @@ workflows = {
     "echo.upload": file_upload,
     "sync": sync,
     "install": install,
+    "adapter.update": adapter_update,
 }
 
 
