@@ -149,7 +149,7 @@ async def ipm_handler(bot: Bot, event: Event, matcher: Matcher):
             return await matcher.send(f"适配器错误: 工作流[install]不存在！")
 
     await matcher.send(
-        "Infini Package Manager 版本 1.0.0-beta.5 [IPM for Infini v2.0.6]\n"
+        "Infini Package Manager 版本 1.0.0-beta.6 [IPM for Infini v2.0.6]\n"
         "欢迎使用 IPM, 使用`.help ipm`查看 IPM 使用帮助."
     )
 
