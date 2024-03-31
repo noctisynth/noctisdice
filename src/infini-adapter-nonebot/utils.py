@@ -75,3 +75,11 @@ def sync(matcher: Matcher):
     except Exception as e:
         return asyncio.run(matcher.send(f"适配器错误: 同步规则包时出现异常: {e}"))
     return asyncio.run(matcher.send("规则包同步完成！"))
+
+
+def install(matcher: Matcher):
+    try:
+        api.install(Path.cwd(), echo=True)
+    except Exception as e:
+        return asyncio.run(matcher.send(f"适配器错误: 安装规则包时出现异常: {e}"))
+    return asyncio.run(matcher.send("规则包安装完成！"))
