@@ -117,7 +117,7 @@ async def ipm_handler(event: Event, matcher: Matcher):
             else:
                 try:
                     repo = Repo(str(Path.cwd()))
-                    repo.remote("main").pull()
+                    repo.remote().pull()
                 except Exception as e:
                     return await matcher.send(
                         f"适配器错误: 拉取适配器更改时出现异常: {e}"
