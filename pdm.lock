@@ -422,7 +422,7 @@ files = [
 
 [[package]]
 name = "infini"
-version = "2.1.8"
+version = "2.1.9"
 requires_python = ">=3.8"
 summary = "Infini 内容输入输出流框架"
 groups = ["default", "dev"]
@@ -431,8 +431,8 @@ dependencies = [
     "rich>=13.7.0",
 ]
 files = [
-    {file = "infini-2.1.8-py3-none-any.whl", hash = "sha256:9d5fab7fe1850a9e8b44f1740baaee4ecb3506cf099891043e3d1bcfddc3bcc6"},
-    {file = "infini-2.1.8.tar.gz", hash = "sha256:e923578d7e6b3af97b0355c57426e60746633716d05806f704f162778a96eeef"},
+    {file = "infini-2.1.9-py3-none-any.whl", hash = "sha256:6327c396189d15e972fcc84be0760b9c421d4c78429626305ca04827966f5872"},
+    {file = "infini-2.1.9.tar.gz", hash = "sha256:81bd54e0e815f69db4dd17a5d7c38c215ed60318d5ab7dc672bc6ff26e68762b"},
 ]
 
 [[package]]
@@ -448,7 +448,7 @@ files = [
 
 [[package]]
 name = "ipdm"
-version = "0.2.0b3"
+version = "0.2.0b9"
 requires_python = ">=3.8"
 summary = "Infini 包管理器"
 groups = ["dev"]
@@ -462,8 +462,8 @@ dependencies = [
     "virtualenv>=20.25.1",
 ]
 files = [
-    {file = "ipdm-0.2.0b3-py3-none-any.whl", hash = "sha256:7ae9509d2e3be08276ffe3f5cda1386d184346df582101c6635255e23edbe609"},
-    {file = "ipdm-0.2.0b3.tar.gz", hash = "sha256:6c37a4255dfa46578518d479c8b3e1168715cec8d3dbe4fa058ffdfb7ead4952"},
+    {file = "ipdm-0.2.0b9-py3-none-any.whl", hash = "sha256:81e53406364c3a3a2b7bd910e70202abd3ad46ab9456dd6c057d1bdf47784dfe"},
+    {file = "ipdm-0.2.0b9.tar.gz", hash = "sha256:f2aa87f2df446016442df3d62635ab3b1ffc6c2c1a7a9db54be55cc5575a5015"},
 ]
 
 [[package]]
@@ -879,8 +879,8 @@ files = [
 
 [[package]]
 name = "nonebot-adapter-qq"
-version = "1.4.2"
-requires_python = ">=3.8,<4.0"
+version = "1.4.3"
+requires_python = "<4.0,>=3.8"
 summary = "QQ adapter for nonebot2"
 groups = ["default"]
 dependencies = [
@@ -890,8 +890,8 @@ dependencies = [
     "yarl<2.0.0,>=1.9.0",
 ]
 files = [
-    {file = "nonebot_adapter_qq-1.4.2-py3-none-any.whl", hash = "sha256:1bae0016420140841baad81365a8226f448d89ce8bd375f9ec5dd030e244e1da"},
-    {file = "nonebot_adapter_qq-1.4.2.tar.gz", hash = "sha256:69331998182ecbeec2efa3dee89c63a0d359b93936afa39f158224d96e087c3a"},
+    {file = "nonebot_adapter_qq-1.4.3-py3-none-any.whl", hash = "sha256:49fe5c6db2d1654c3e75b13088ae37931606dab4e994bcf447c35d06a98152cd"},
+    {file = "nonebot_adapter_qq-1.4.3.tar.gz", hash = "sha256:f4777cd20ca8ecd4d35b4e3844e151269181faf2cda1e5eee319a90277ded299"},
 ]
 
 [[package]]
