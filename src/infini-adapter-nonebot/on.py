@@ -73,7 +73,7 @@ async def ipm_handler(event: Event, matcher: Matcher):
 
     if commands["hmr"]:
         hmr()
-        return await matcher.send("Infini 热重载完毕")
+        return await matcher.send("Infini 热重载完毕！")
 
     if commands["add"]:
         if commands["add"] in packages:
@@ -83,18 +83,19 @@ async def ipm_handler(event: Event, matcher: Matcher):
 
         try:
             api.require(Path.cwd(), commands["add"], echo=True)  # type: ignore
+            hmr()
         except Exception as e:
             return await matcher.send(f"适配器错误: 挂载规则包时出现错误: {e}")
-        hmr()
         return await matcher.send(f"规则包[{commands['add']}]挂载完成")
 
     if commands["clear"]:
         for package in packages:
             try:
                 api.unrequire(Path.cwd(), package, echo=True)
+                hmr()
             except Exception as e:
                 return await matcher.send(f"适配器错误: 卸载规则包时出现异常: {e}")
-        hmr()
+
         return await matcher.send(f"挂载规则包已清空")
 
     if commands["show"]:
@@ -104,6 +105,7 @@ async def ipm_handler(event: Event, matcher: Matcher):
         if commands["remove"] in packages:
             try:
                 api.unrequire(Path.cwd(), commands["remove"], echo=True)
+                hmr()
             except Exception as e:
                 return await matcher.send(f"适配器错误: 卸载规则包时出现异常: {e}")
 
