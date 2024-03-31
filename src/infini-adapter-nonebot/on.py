@@ -8,15 +8,11 @@ from infini.injector import Injector
 from diceutils.utils import format_msg
 from diceutils.parser import CommandParser, Commands, Optional, Bool
 from diceutils.status import StatusPool
-from pathlib import Path
 
 from .utils import hmr, get_core
 from .workflow import put, workflows
 
 import json
-import sys
-
-sys.path.append(str(Path.cwd().joinpath("packages")))
 
 
 class Interceptor:
