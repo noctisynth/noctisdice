@@ -57,7 +57,7 @@ def on_shutdown():
 
 
 @ipm_command.handle()
-async def ipm_handler(event: Event, matcher: Matcher):
+async def ipm_handler(bot: Bot, event: Event, matcher: Matcher):
     args = format_msg(event.get_plaintext(), begin=".ipm")
     commands = CommandParser(
         Commands(
@@ -106,7 +106,7 @@ async def ipm_handler(event: Event, matcher: Matcher):
         return await matcher.send(f"挂载规则包已清空")
 
     if commands["show"]:
-        return await matcher.send(f"挂载规则包: {[package for package in packages]!r}")
+        return await matcher.send(f"已挂载规则包: {', '.join(packages)}")
 
     if commands["remove"]:
         if commands["remove"] in packages:
@@ -124,11 +124,8 @@ async def ipm_handler(event: Event, matcher: Matcher):
             if not shutil.which("git"):
                 return await matcher.send("未检测到 Git 安装，指令忽略。")
             else:
-                parameters = {"matcher": matcher}
+                parameters = {"bot": bot, "event": event}
                 if workflow := workflows.get("adapter.update"):
-                    print(workflow)
-                    print(injector.inject(workflow, parameters=parameters))
-                    put(injector.inject(workflow, parameters=parameters))
                     return await matcher.send("开始拉取适配器更改...")
                 else:
                     return await matcher.send(
@@ -136,7 +133,7 @@ async def ipm_handler(event: Event, matcher: Matcher):
                     )
 
     if commands["sync"]:
-        parameters = {"matcher": matcher}
+        parameters = {"bot": bot, "event": event}
         if workflow := workflows.get("sync"):
             put(injector.inject(workflow, parameters=parameters))
             return await matcher.send("同步规则包中...")
@@ -144,7 +141,7 @@ async def ipm_handler(event: Event, matcher: Matcher):
             return await matcher.send(f"适配器错误: 工作流[sync]不存在！")
 
     if commands["install"]:
-        parameters = {"matcher": matcher}
+        parameters = {"bot": bot, "event": event}
         if workflow := workflows.get("install"):
             put(injector.inject(workflow, parameters=parameters))
             return await matcher.send("同步规则包中...")

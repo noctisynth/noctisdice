@@ -1,8 +1,7 @@
 from typing import Optional
 from git import Repo
-from nonebot.adapters import Bot
+from nonebot.adapters import Bot, Event
 from nonebot.log import logger
-from nonebot.matcher import Matcher
 from pathlib import Path
 from ipm.models.ipk import InfiniProject
 from infini.core import Core
@@ -70,29 +69,30 @@ def file_upload(bot: Bot, filepath: Path, output: Output):
     output.status = 0
 
 
-def sync(matcher: Matcher):
+def sync(bot: Bot, event: Event):
     try:
         api.sync(Path.cwd(), echo=True)
+        hmr()
     except Exception as e:
-        return asyncio.run(matcher.send(f"适配器错误: 同步规则包时出现异常: {e}"))
-    return asyncio.run(matcher.send("规则包同步完成！"))
+        return asyncio.run(bot.send(event, f"适配器错误: 同步规则包时出现异常: {e}"))
+    return asyncio.run(bot.send(event, "规则包同步完成！"))
 
 
-def install(matcher: Matcher):
+def install(bot: Bot, event: Event):
     try:
         api.install(Path.cwd(), echo=True)
+        hmr()
     except Exception as e:
-        return asyncio.run(matcher.send(f"适配器错误: 安装规则包时出现异常: {e}"))
-    asyncio.create_task(asyncio.run(matcher.send("规则包安装完成！")))
+        return asyncio.run(bot.send(event, f"适配器错误: 安装规则包时出现异常: {e}"))
+    asyncio.run(bot.send(event, "规则包安装完成！"))
 
 
-def adapter_update(matcher: Matcher):
-    asyncio.create_task(matcher.send("workflow worked!"))
-    print(matcher.priority)
+def adapter_update(bot: Bot, event: Event):
     try:
         repo = Repo(str(Path.cwd()))
         repo.remote().pull()
+        hmr()
     except Exception as e:
-        return asyncio.run(matcher.send(f"适配器错误: 拉取适配器更改时出现异常: {e}"))
+        return asyncio.run(bot.send(event, f"适配器错误: 拉取适配器更改时出现异常: {e}"))
 
-    return asyncio.run(matcher.send("适配器更新成功！"))
+    asyncio.run(bot.send(event, "适配器更新成功！"))
