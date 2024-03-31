@@ -1,6 +1,9 @@
+from typing import Optional
 from nonebot.adapters import Bot
+from nonebot.log import logger
 from pathlib import Path
 from diceutils.status import StatusPool
+from ipm.models.ipk import InfiniProject
 from infini.core import Core
 from infini.loader import Loader
 from infini.output import Output
@@ -17,17 +20,22 @@ def get_core():
     return core
 
 
-def hmr(output: Output = None):
+def get_packages():
+    project = InfiniProject()
+    packages = [requirement.name for requirement in project.requirements]
+    return packages
+
+
+def hmr(output: Optional[Output] = None):
     global core
     importlib.invalidate_caches()
 
-    packages = status.get("bot", "packages") or []
+    packages = get_packages()
+    logger.info("挂载规则包: " + ", ".join(packages))
 
     loader = Loader()
     for package in packages:
-        for name in [
-            name for name in sys.modules.keys() if name.startswith(package)
-        ]:
+        for name in [name for name in sys.modules.keys() if name.startswith(package)]:
             sys.modules[name] = (
                 importlib.reload(sys.modules[name])
                 if name in sys.modules

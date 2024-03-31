@@ -1,3 +1,4 @@
+from pathlib import Path
 from nonebot.plugin import on_message, on_startswith
 from nonebot.rule import Rule
 from nonebot.adapters import Event, Bot
@@ -7,9 +8,9 @@ from infini.input import Input
 from infini.injector import Injector
 from diceutils.utils import format_msg
 from diceutils.parser import CommandParser, Commands, Optional, Bool
-from diceutils.status import StatusPool
+from ipm import api
 
-from .utils import hmr, get_core
+from .utils import get_packages, hmr, get_core
 from .workflow import put, workflows
 
 import json
@@ -41,20 +42,20 @@ class Interceptor:
 
 injector = Injector()
 interceptor = on_message(Rule(Interceptor()), priority=1, block=True)
-ipm = on_startswith(".ipm", priority=0, block=True)
+ipm_command = on_startswith((".ipm", "。ipm", "/ipm"), priority=0, block=True)
 
 hmr()
 
 
-@ipm.handle()
+@ipm_command.handle()
 async def ipm_handler(event: Event, matcher: Matcher):
     args = format_msg(event.get_plaintext(), begin=".ipm")
     commands = CommandParser(
         Commands(
             [
                 Bool("hmr"),
-                Optional("add", str),
-                Optional("remove", str),
+                Optional(("add", "require"), str),
+                Optional(("remove", "rm", "unrequire"), str),
                 Bool("clear"),
                 Bool("show"),
             ]
@@ -63,33 +64,44 @@ async def ipm_handler(event: Event, matcher: Matcher):
         auto=True,
     ).results
 
-    status = StatusPool.get("dicergirl")
+    packages = get_packages()
 
     if commands["hmr"]:
         hmr()
         return await matcher.send("Infini 热重载完毕")
 
     if commands["add"]:
-        packages = status.get("bot", "packages") or []
-        packages.append(commands["add"])
-        status.set("bot", "packages", packages)
+        if commands["add"] in packages:
+            return await matcher.send(
+                f"规则包[{commands['add']}]已经被挂载，如果你需要重新挂载规则包，请使用[.ipm hmr]进行重新挂载。"
+            )
+
+        try:
+            api.require(Path.cwd(), commands["add"])  # type: ignore
+        except Exception as e:
+            return await matcher.send(f"适配器错误: 挂载规则包时出现错误: {e}")
         hmr()
         return await matcher.send(f"规则包[{commands['add']}]挂载完成")
 
     if commands["clear"]:
-        status.set("bot", "packages", [])
+        for package in packages:
+            try:
+                api.unrequire(Path.cwd(), package)
+            except Exception as e:
+                return await matcher.send(f"适配器错误: 卸载规则包时出现异常: {e}")
         hmr()
         return await matcher.send(f"挂载规则包已清空")
 
     if commands["show"]:
-        packages = status.get("bot", "packages") or []
         return await matcher.send(f"挂载规则包: {[package for package in packages]!r}")
 
     if commands["remove"]:
-        packages = status.get("bot", "packages") or []
         if commands["remove"] in packages:
-            packages.remove(commands["remove"])
-            status.set("bot", "packages", packages)
+            try:
+                api.unrequire(Path.cwd(), commands["remove"])
+            except Exception as e:
+                return await matcher.send(f"适配器错误: 卸载规则包时出现异常: {e}")
+
             return await matcher.send(f"规则包[{commands['remove']}]卸载完成")
         return await matcher.send(f"规则包[{commands['remove']}]未挂载")
 
@@ -111,7 +123,7 @@ async def handler(bot: Bot, event: Event, matcher: Matcher):
     ).get("nickname")
     user_id = str(event.get_user_id())
     self_id = str(nb_event_json.get("self_id"))
-    group_id = str(event.group_id) if hasattr(event, "group_id") else None
+    group_id = str(getattr(event, "group_id")) if hasattr(event, "group_id") else None
     session_id = event.get_session_id()
 
     plain_text = event.get_plaintext()
@@ -167,4 +179,7 @@ async def handler(bot: Bot, event: Event, matcher: Matcher):
         else:
             parameters = {"output": output, "bot": bot, "matcher": matcher}
             parameters.update(output.variables)
-            put(injector.inject(workflows.get(output.name), parameters=parameters))
+            if workflow := workflows.get(output.name):
+                put(injector.inject(workflow, parameters=parameters))
+            else:
+                await matcher.send(f"适配器错误: 工作流[{output.name}]不存在！")
