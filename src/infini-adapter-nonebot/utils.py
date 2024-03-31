@@ -1,11 +1,13 @@
 from typing import Optional
 from nonebot.adapters import Bot
 from nonebot.log import logger
+from nonebot.matcher import Matcher
 from pathlib import Path
 from ipm.models.ipk import InfiniProject
 from infini.core import Core
 from infini.loader import Loader
 from infini.output import Output
+from ipm import api
 
 import importlib
 import sys
@@ -65,3 +67,11 @@ def file_upload(bot: Bot, filepath: Path, output: Output):
         )
     )
     output.status = 0
+
+
+def sync(matcher: Matcher):
+    try:
+        api.sync(Path.cwd(), echo=True)
+    except Exception as e:
+        return asyncio.run(matcher.send(f"适配器错误: 同步规则包时出现异常: {e}"))
+    return asyncio.run(matcher.send("规则包同步完成！"))

@@ -2,6 +2,7 @@ from pathlib import Path
 from nonebot.plugin import on_message, on_startswith
 from nonebot.rule import Rule
 from nonebot.adapters import Event, Bot
+from nonebot import get_driver
 from nonebot.matcher import Matcher
 from nonebot.log import logger
 from infini.input import Input
@@ -12,7 +13,7 @@ from git import Repo
 from ipm import api
 
 from .utils import get_packages, hmr, get_core
-from .workflow import put, workflows
+from .workflow import put, workflows, pool
 
 import json
 import shutil
@@ -45,8 +46,14 @@ class Interceptor:
 injector = Injector()
 interceptor = on_message(Rule(Interceptor()), priority=1, block=True)
 ipm_command = on_startswith((".ipm", "。ipm", "/ipm"), priority=0, block=True)
+driver = get_driver()
 
 hmr()
+
+
+@driver.on_shutdown
+def on_shutdown():
+    pool.shutdown()
 
 
 @ipm_command.handle()
@@ -128,11 +135,12 @@ async def ipm_handler(event: Event, matcher: Matcher):
             return await matcher.send("适配器更新成功！")
 
     if commands["sync"]:
-        try:
-            api.sync(Path.cwd())
-        except Exception as e:
-            return await matcher.send(f"适配器错误: 同步规则包时出现异常: {e}")
-        return await matcher.send("规则包同步完成！")
+        parameters = {"matcher": matcher}
+        if workflow := workflows.get("sync"):
+            put(injector.inject(workflow, parameters=parameters))
+            return await matcher.send("同步规则包中...")
+        else:
+            return await matcher.send(f"适配器错误: 工作流[sync]不存在！")
 
     if commands["install"]:
         try:
