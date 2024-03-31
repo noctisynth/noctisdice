@@ -126,6 +126,8 @@ async def ipm_handler(event: Event, matcher: Matcher):
             else:
                 parameters = {"matcher": matcher}
                 if workflow := workflows.get("adapter.update"):
+                    print(workflow)
+                    print(injector.inject(workflow, parameters=parameters))
                     put(injector.inject(workflow, parameters=parameters))
                     return await matcher.send("开始拉取适配器更改...")
                 else:

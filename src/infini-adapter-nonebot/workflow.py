@@ -13,4 +13,5 @@ workflows = {
 
 
 def put(func: Callable):
+    print("put:", func.__name__)
     pool.submit(func)

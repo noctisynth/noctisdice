@@ -87,6 +87,7 @@ def install(matcher: Matcher):
 
 
 def adapter_update(matcher: Matcher):
+    print(matcher.priority)
     try:
         repo = Repo(str(Path.cwd()))
         repo.remote().pull()
