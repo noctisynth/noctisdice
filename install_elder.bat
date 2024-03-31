@@ -17,7 +17,10 @@ if %errorlevel% equ 0 (
 )
 :check_pipx
 pipx --version > nul 2>&1
-pipx ensurepath
+pipx ensurepath > nul 2>&1
+for /f "delims=" %%a in ('python -c "import os; print(os.environ['PATH'])"') do (
+    set "PATH=%%a"
+)
 if %errorlevel% equ 0 (
     echo [+] pipx 已正确安装。
     goto :setup_env
@@ -35,7 +38,8 @@ echo [!] 注意: 请务必勾选 Add Python 3.12 to PATH
 start /wait python_installer.exe
 
 del /q python_installer.exe
-goto :check_python
+echo [+] Python 安装完成，请重新启动安装脚本以继续执行此程式。
+goto :end
 
 :install_pipx
 echo [*] 安装 pipx 中...

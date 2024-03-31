@@ -17,7 +17,10 @@ if %errorlevel% equ 0 (
 )
 :check_pipx
 pipx --version > nul 2>&1
-pipx ensurepath
+pipx ensurepath > nul 2>&1
+for /f "delims=" %%a in ('python -c "import os; print(os.environ['PATH'])"') do (
+    set "PATH=%%a"
+)
 if %errorlevel% equ 0 (
     echo [32m[+] pipx ÒÑÕýÈ·°²×°¡£[0m
     goto :setup_env
@@ -35,7 +38,8 @@ echo [33m[!] ×¢Òâ: ÇëÎñ±Ø¹´Ñ¡ Add Python 3.12 to PATH[0m
 start /wait python_installer.exe
 
 del /q python_installer.exe
-goto :check_python
+echo [32m[+] Python °²×°Íê³É£¬ÇëÖØÐÂÆô¶¯°²×°½Å±¾ÒÔ¼ÌÐøÖ´ÐÐ´Ë³ÌÊ½¡£[0m
+goto :end
 
 :install_pipx
 echo [*] °²×° pipx ÖÐ...
