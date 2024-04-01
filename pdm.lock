@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:405961058e35b2b479d5edca832bfea9fcf2931b5dea3f5354819e834cdbfa55"
+content_hash = "sha256:fd85d5718c9b00f1c0964778a38ec311fad8fcc513d823e4769a39d3a1d59295"
 
 [[package]]
 name = "annotated-types"
@@ -422,7 +422,7 @@ files = [
 
 [[package]]
 name = "infini"
-version = "2.1.9"
+version = "2.1.12"
 requires_python = ">=3.8"
 summary = "Infini 内容输入输出流框架"
 groups = ["default", "dev"]
@@ -431,8 +431,8 @@ dependencies = [
     "rich>=13.7.0",
 ]
 files = [
-    {file = "infini-2.1.9-py3-none-any.whl", hash = "sha256:6327c396189d15e972fcc84be0760b9c421d4c78429626305ca04827966f5872"},
-    {file = "infini-2.1.9.tar.gz", hash = "sha256:81bd54e0e815f69db4dd17a5d7c38c215ed60318d5ab7dc672bc6ff26e68762b"},
+    {file = "infini-2.1.12-py3-none-any.whl", hash = "sha256:ba8214041171854c64f34c38efb15fcc17164d19cf183022bfe9b64abf723947"},
+    {file = "infini-2.1.12.tar.gz", hash = "sha256:f3f1a58a2d0b369f17362e82165f1e6cffd1419c3df52a5f5c01072c021725dd"},
 ]
 
 [[package]]
