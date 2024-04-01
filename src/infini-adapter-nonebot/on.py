@@ -125,31 +125,31 @@ async def ipm_handler(bot: Bot, event: Event, matcher: Matcher):
                 return await matcher.send("未检测到 Git 安装，指令忽略。")
             else:
                 parameters = {"bot": bot, "event": event}
-                if workflow := workflows.get("adapter.update"):
+                if workflow := workflows.get("ipm.adapter.update"):
                     return await matcher.send("开始拉取适配器更改...")
                 else:
                     return await matcher.send(
-                        f"适配器错误: 工作流[adapter.update]不存在！"
+                        f"适配器错误: 工作流[ipm.adapter.update]不存在！"
                     )
 
     if commands["sync"]:
         parameters = {"bot": bot, "event": event}
-        if workflow := workflows.get("sync"):
+        if workflow := workflows.get("ipm.sync"):
             put(injector.inject(workflow, parameters=parameters))
             return await matcher.send("同步规则包中...")
         else:
-            return await matcher.send(f"适配器错误: 工作流[sync]不存在！")
+            return await matcher.send(f"适配器错误: 工作流[ipm.sync]不存在！")
 
     if commands["install"]:
         parameters = {"bot": bot, "event": event}
-        if workflow := workflows.get("install"):
+        if workflow := workflows.get("ipm.install"):
             put(injector.inject(workflow, parameters=parameters))
             return await matcher.send("同步规则包中...")
         else:
-            return await matcher.send(f"适配器错误: 工作流[install]不存在！")
+            return await matcher.send(f"适配器错误: 工作流[ipm.install]不存在！")
 
     await matcher.send(
-        "Infini Package Manager 版本 1.0.0-beta.6 [IPM for Infini v2.0.6]\n"
+        "Infini Package Manager 版本 1.0.0-beta.7 [IPM for Infini v2.0.6]\n"
         "欢迎使用 IPM, 使用`.help ipm`查看 IPM 使用帮助."
     )
 
