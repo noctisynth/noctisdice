@@ -422,7 +422,7 @@ files = [
 
 [[package]]
 name = "infini"
-version = "2.1.9"
+version = "2.1.12"
 requires_python = ">=3.8"
 summary = "Infini 内容输入输出流框架"
 groups = ["default", "dev"]
@@ -431,8 +431,8 @@ dependencies = [
     "rich>=13.7.0",
 ]
 files = [
-    {file = "infini-2.1.9-py3-none-any.whl", hash = "sha256:6327c396189d15e972fcc84be0760b9c421d4c78429626305ca04827966f5872"},
-    {file = "infini-2.1.9.tar.gz", hash = "sha256:81bd54e0e815f69db4dd17a5d7c38c215ed60318d5ab7dc672bc6ff26e68762b"},
+    {file = "infini-2.1.12-py3-none-any.whl", hash = "sha256:ba8214041171854c64f34c38efb15fcc17164d19cf183022bfe9b64abf723947"},
+    {file = "infini-2.1.12.tar.gz", hash = "sha256:f3f1a58a2d0b369f17362e82165f1e6cffd1419c3df52a5f5c01072c021725dd"},
 ]
 
 [[package]]
@@ -448,7 +448,7 @@ files = [
 
 [[package]]
 name = "ipdm"
-version = "0.2.0b9"
+version = "0.2.0rc1"
 requires_python = ">=3.8"
 summary = "Infini 包管理器"
 groups = ["dev"]
@@ -462,8 +462,8 @@ dependencies = [
     "virtualenv>=20.25.1",
 ]
 files = [
-    {file = "ipdm-0.2.0b9-py3-none-any.whl", hash = "sha256:81e53406364c3a3a2b7bd910e70202abd3ad46ab9456dd6c057d1bdf47784dfe"},
-    {file = "ipdm-0.2.0b9.tar.gz", hash = "sha256:f2aa87f2df446016442df3d62635ab3b1ffc6c2c1a7a9db54be55cc5575a5015"},
+    {file = "ipdm-0.2.0rc1-py3-none-any.whl", hash = "sha256:ac6c25720feab867b95e1cbd7fea78e53129ca9bcbc83c0416499045a601d6fa"},
+    {file = "ipdm-0.2.0rc1.tar.gz", hash = "sha256:84046cd1e892959cfb3200f5b4718a27debad5a9aa78973dbd48000e642c0f88"},
 ]
 
 [[package]]
