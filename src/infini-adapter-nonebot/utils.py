@@ -84,7 +84,7 @@ def install(bot: Bot, event: Event):
         hmr()
     except Exception as e:
         return asyncio.run(bot.send(event, f"适配器错误: 安装规则包时出现异常: {e}"))
-    asyncio.run(bot.send(event, "规则包安装完成！"))
+    return asyncio.run(bot.send(event, "规则包安装完成！"))
 
 
 def adapter_update(bot: Bot, event: Event):
@@ -95,4 +95,4 @@ def adapter_update(bot: Bot, event: Event):
     except Exception as e:
         return asyncio.run(bot.send(event, f"适配器错误: 拉取适配器更改时出现异常: {e}"))
 
-    asyncio.run(bot.send(event, "适配器更新成功！"))
+    return asyncio.run(bot.send(event, "适配器更新成功！"))
