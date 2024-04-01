@@ -6,9 +6,9 @@ pool = ThreadPoolExecutor(20)
 workflows = {
     "echo.hmr": hmr,
     "echo.upload": file_upload,
-    "sync": sync,
-    "install": install,
-    "adapter.update": adapter_update,
+    "ipm.sync": sync,
+    "ipm.install": install,
+    "ipm.adapter.update": adapter_update,
 }
 
 

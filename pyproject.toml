@@ -7,7 +7,7 @@ authors = [
 ]
 license = {text = "AGPLv3"}
 dependencies = [
-    "infini>2.1.0",
+    "infini>=2.1.12",
     "nonebot-adapter-qq>=1.4.2",
     "nonebot2[httpx]>=2.2.1",
     "nonebot2[websockets]>=2.2.1",
