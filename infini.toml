@@ -12,6 +12,7 @@ readme = "README.md"
 noctisdice = "4.0.0-rc.4"
 coc = "0.1.0-rc.1"
 ndice = "0.1.0-rc.1"
+helper = "0.1.0"
 
 [dependencies]
 diceutils = "*"

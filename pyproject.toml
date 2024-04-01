@@ -7,7 +7,7 @@ authors = [
 ]
 license = {text = "AGPLv3"}
 dependencies = [
-    "infini>=2.1.12",
+    "infini>=2.1.15",
     "nonebot-adapter-qq>=1.4.2",
     "nonebot2[httpx]>=2.2.1",
     "nonebot2[websockets]>=2.2.1",
@@ -28,7 +28,7 @@ distribution = true
 adapters = [
     { name = "QQ", module_name = "nonebot.adapters.qq" },
     { name = "Onebot", module_name = "nonebot.adapters.onebot.v11" },
-    # { name = "Console", module_name = "nonebot.adapters.console" },
+    { name = "Console", module_name = "nonebot.adapters.console" },
 ]
 plugins = []
 plugin_dirs = ["src/"]

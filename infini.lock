@@ -24,3 +24,9 @@ name = "ndice"
 version = "0.1.0-rc.1"
 yggdrasil = "https://yggdrasil.noctisynth.org/"
 url = "/packages/ndice/ndice-0.1.0-rc.1.ipk"
+
+[[package]]
+name = "helper"
+version = "0.1.0"
+yggdrasil = "https://yggdrasil.noctisynth.org/"
+url = "/packages/helper/helper-0.1.0.ipk"
