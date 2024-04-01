@@ -56,7 +56,7 @@ goto :check_pdm
 
 :install_ipm
 echo [*] °²×° IPM ÖÐ...
-pipx install ipdm^>=0.2.0-beta -i https://mirrors.aliyun.com/pypi/simple/
+pipx install ipdm^>=0.2.0-rc -i https://mirrors.aliyun.com/pypi/simple/
 goto :check_ipm
 
 :install_nb_cli
